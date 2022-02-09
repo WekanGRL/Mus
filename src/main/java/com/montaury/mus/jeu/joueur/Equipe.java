@@ -8,21 +8,33 @@ import java.util.List;
 
 public class Equipe {
     public static Equipe humain(String nom) {
-        return new Equipe(nom, Joueur.humain(nom));
+        return new Equipe(nom, Joueur.humain(nom),Joueur.ordinateur());
     }
 
     public static Equipe ordinateur() {
-        return new Equipe("Ordinateur",Joueur.ordinateur());
+        return new Equipe("Ordinateur",Joueur.ordinateur(),Joueur.ordinateur());
     }
 
     private final String nom;
     private final Main main = Main.vide();
 
-    public List<Joueur> listeJoueurs = new ArrayList<>();
+    private Joueur joueurUn;
+    private Joueur joueurDeux;
 
-    public Equipe(String nom, Joueur joueur) {
+    public Equipe(String nom, Joueur joueur1, Joueur joueur2) {
         this.nom = nom;
-        listeJoueurs.add(joueur);
+        this.joueurUn = joueur1;
+        this.joueurDeux = joueur2;
+        this.joueurUn.setEquipe(this);
+        this.joueurDeux.setEquipe(this);
+    }
+
+    public Joueur getJoueurUn() {
+        return joueurUn;
+    }
+
+    public Joueur getJoueurDeux() {
+        return joueurDeux;
     }
 
     public String nom() {
@@ -31,10 +43,6 @@ public class Equipe {
 
     public Main main() {
         return main;
-    }
-
-    public void donnerCartes(List<Carte> cartes) {
-        this.listeJoueurs.get(0).donnerCartes(cartes);
     }
 
 }
