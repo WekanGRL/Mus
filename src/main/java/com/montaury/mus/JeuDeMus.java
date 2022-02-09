@@ -13,8 +13,8 @@ public class JeuDeMus {
     var nomJoueur = new Scanner(System.in).next();
     var equipeHumain = Equipe.humain(nomJoueur);
 
-    var partie = new Partie(new AffichageEvenements(equipeHumain.joueur));
-    var resultat = partie.jouer(new Opposants(equipeHumain.joueur, Equipe.ordinateur().joueur));
+    var partie = new Partie(new AffichageEvenements(equipeHumain.listeJoueurs.get(0)));
+    var resultat = partie.jouer(new Opposants(equipeHumain.listeJoueurs.get(0), Equipe.ordinateur().listeJoueurs.get(0)));
 
     System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
   }

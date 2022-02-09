@@ -2,6 +2,8 @@ package com.montaury.mus.jeu.joueur;
 
 import com.montaury.mus.console.InterfaceJoueurHumain;
 import com.montaury.mus.jeu.carte.Carte;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Equipe {
@@ -14,12 +16,13 @@ public class Equipe {
     }
 
     private final String nom;
-    public final Joueur joueur;
     private final Main main = Main.vide();
+
+    public List<Joueur> listeJoueurs = new ArrayList<>();
 
     public Equipe(String nom, Joueur joueur) {
         this.nom = nom;
-        this.joueur = joueur;
+        listeJoueurs.add(joueur);
     }
 
     public String nom() {
@@ -31,6 +34,7 @@ public class Equipe {
     }
 
     public void donnerCartes(List<Carte> cartes) {
-        this.joueur.donnerCartes(cartes);
+        this.listeJoueurs.get(0).donnerCartes(cartes);
     }
+
 }
