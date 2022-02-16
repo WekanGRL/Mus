@@ -56,6 +56,14 @@ public class Opposants {
     return fileJoueur.getLast();
   }
 
+  public boolean isEsku(Joueur joueur){
+    return joueur == fileJoueur.getFirst();
+  }
+
+  public boolean isZaku(Joueur joueur){
+    return joueur == fileJoueur.getLast();
+  }
+
   public List<Joueur> dansLOrdre() {
     List<Joueur> maListe;
     if(fileJoueur.size() > 2){

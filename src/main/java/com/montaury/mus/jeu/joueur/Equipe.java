@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Equipe {
     public static Equipe humain(String nom) {
-        return new Equipe(nom, Joueur.humain(nom),Joueur.ordinateur());
+        return new Equipe( Joueur.humain(nom),Joueur.ordinateur());
     }
 
     public static Equipe ordinateur() {
-        return new Equipe("Ordinateur",Joueur.ordinateur(),Joueur.ordinateur());
+        return new Equipe(Joueur.ordinateur(),Joueur.ordinateur());
     }
 
     private final String nom;
@@ -21,8 +21,8 @@ public class Equipe {
     private Joueur joueurUn;
     private Joueur joueurDeux;
 
-    public Equipe(String nom, Joueur joueur1, Joueur joueur2) {
-        this.nom = nom;
+    public Equipe(Joueur joueur1, Joueur joueur2) {
+        this.nom = joueur1.nom();
         this.joueurUn = joueur1;
         this.joueurDeux = joueur2;
         this.joueurUn.setEquipe(this);
