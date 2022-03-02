@@ -14,7 +14,7 @@ public class JeuDeMus {
     var equipeHumain = Equipe.humain(nomJoueur);
 
     var partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
-    var resultat = partie.jouer(new Opposants(new Equipe(Joueur.humain(nomJoueur),Joueur.ordinateur()), Equipe.ordinateur()));
+    var resultat = partie.jouer(new Opposants(equipeHumain, Equipe.ordinateur()));
 
     System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
   }

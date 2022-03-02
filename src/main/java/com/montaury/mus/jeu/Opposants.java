@@ -32,19 +32,19 @@ public class Opposants {
 
   }
 
-  private Equipe equipeEsku() {
+  public Equipe equipeEsku() {
     return this.equipeEsku;
   }
 
-  private Equipe equipeZaku(){
+  public Equipe equipeZaku(){
     return this.equipeZaku;
   }
 
-  private void setEquipeZaku(Equipe equipe) {
+  public void setEquipeZaku(Equipe equipe) {
     this.equipeZaku = equipe;
   }
 
-  private void setEquipeEsku(Equipe equipe) {
+  public void setEquipeEsku(Equipe equipe) {
     this.equipeEsku = equipe;
   }
 

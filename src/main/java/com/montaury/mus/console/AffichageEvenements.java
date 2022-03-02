@@ -41,7 +41,7 @@ public class AffichageEvenements implements Evenements {
   public void tourTermine(Opposants opposants, Manche.Score score) {
     afficher("Tour terminé");
     opposants.dansLOrdre().forEach(this::afficherMain);
-    score.scoreParJoueur().forEach((key, value) -> afficher("Score " + key.nom() + ": " + value));
+    score.scoreParEquipe().forEach((key, value) -> afficher("Score " + key.nom() + ": " + value));
     sautLigne();
   }
 
