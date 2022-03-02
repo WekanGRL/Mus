@@ -24,12 +24,24 @@ public class Participants {
   }
 
   public Joueur adversaireDe(Joueur joueurParlant) {
-    return joueurParlant == premier() ? dansLOrdre.get(1) : premier();
+    int indiceJoueurParlant = dansLOrdre.lastIndexOf(joueurParlant);
+
+    if(indiceJoueurParlant == dansLOrdre.size()-1)  // Cas où le joueur parlant est le dernier
+    {
+      return premier();
+    }
+    else
+    {
+      return dansLOrdre.get(indiceJoueurParlant+1);
+    }
   }
+
 
   public Iterable<Joueur> dansLOrdre() {
     return dansLOrdre;
   }
+
+
 
   public Participants retirer(Joueur joueur) {
     var joueurs = new ArrayList<>(dansLOrdre);

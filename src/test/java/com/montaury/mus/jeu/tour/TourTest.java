@@ -5,6 +5,7 @@ import com.montaury.mus.jeu.Opposants;
 import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.carte.Defausse;
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Gehiago;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Idoki;
@@ -31,80 +32,120 @@ class TourTest {
   }
 
   @Test
-  void devrait_donner_tous_les_points_au_joueur_esku_si_le_joueur_zaku_fait_tira() {
+  void devrait_donner_tous_les_points_a_lequipe_du_joueur_esku_si_les_joueurs_de_lequipe_zaku_font_tira() {
+
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
     var joueurZaku = unJoueurFaisantChoix(new Tira());
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    var joueurAllie = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
+    var joueurContre = unJoueurFaisantChoix(new Tira());
+
+    var EquipeEsku = new Equipe(joueurEsku,joueurAllie);
+    var EquipeZaku = new Equipe(joueurContre,joueurZaku);
+
+    var opposants = new Opposants(EquipeEsku, EquipeZaku);
     var score = new Manche.Score(opposants);
 
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 8);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 0);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 8);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 0);
   }
 
   @Test
   void devrait_repartir_les_points_si_tout_est_paso() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Paso(), new Paso(), new Paso(), new Paso());
     var joueurZaku = unJoueurFaisantChoix(new Paso());
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    var joueurAllie = unJoueurFaisantChoix(new Paso());
+    var joueurContre = unJoueurFaisantChoix(new Paso());
+
+    var EquipeEsku = new Equipe(joueurEsku,joueurAllie);
+    var EquipeZaku = new Equipe(joueurContre,joueurZaku);
+
+    var opposants = new Opposants(EquipeEsku, EquipeZaku);
     var score = new Manche.Score(opposants);
 
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 1);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 5);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 1);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 5);
   }
 
   @Test
   void devrait_faire_gagner_le_joueur_zaku_si_hordago_au_grand() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
     var joueurZaku = unJoueurFaisantChoix(new Kanta());
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    var joueurAllie = unJoueurFaisantChoix();
+    var joueurContre = unJoueurFaisantChoix();
+
+    var EquipeEsku = new Equipe(joueurEsku,joueurAllie);
+    var EquipeZaku = new Equipe(joueurContre,joueurZaku);
+
+    var opposants = new Opposants(EquipeEsku, EquipeZaku);
     var score = new Manche.Score(opposants);
 
     tour.jouer(opposants, score);
 
-    assertThat(score.vainqueur()).contains(joueurZaku);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 0);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 40);
+    assertThat(score.vainqueur()).contains(joueurZaku.getEquipe());
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 0);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 40);
   }
 
   @Test
   void devrait_partager_les_points_si_tout_est_idoki() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
     var joueurZaku = unJoueurFaisantChoix(new Idoki());
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    var joueurAllie = unJoueurFaisantChoix();
+    var joueurContre = unJoueurFaisantChoix();
+
+    var EquipeEsku = new Equipe(joueurEsku,joueurAllie);
+    var EquipeZaku = new Equipe(joueurContre,joueurZaku);
+
+    var opposants = new Opposants(EquipeEsku, EquipeZaku);
+
     var score = new Manche.Score(opposants);
 
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 2);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 10);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 2);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 10);
   }
 
   @Test
   void devrait_partager_les_points_si_tout_est_gehiago_puis_idoki() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Idoki(), new Imido(), new Idoki(), new Imido(), new Idoki(), new Imido(), new Idoki());
     var joueurZaku = unJoueurFaisantChoix(new Gehiago(2));
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    var joueurAllie = unJoueurFaisantChoix();
+    var joueurContre = unJoueurFaisantChoix();
+
+    var EquipeEsku = new Equipe(joueurEsku,joueurAllie);
+    var EquipeZaku = new Equipe(joueurContre,joueurZaku);
+
+    var opposants = new Opposants(EquipeEsku, EquipeZaku);
+
     var score = new Manche.Score(opposants);
 
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 4);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 16);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 4);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 16);
   }
 
   @Test
   void devrait_privilegier_le_joueur_esku_si_les_mains_sont_identiques() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
     var joueurZaku = unJoueurFaisantChoix(new Idoki());
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    var joueurAllie = unJoueurFaisantChoix();
+    var joueurContre = unJoueurFaisantChoix();
+
+    var EquipeEsku = new Equipe(joueurEsku,joueurAllie);
+    var EquipeZaku = new Equipe(joueurContre,joueurZaku);
+
+    var opposants = new Opposants(EquipeEsku, EquipeZaku);
+
     var score = new Manche.Score(opposants);
 
     Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.AS_BATON, Carte.DEUX_BATON, Carte.TROIS_BATON, Carte.QUATRE_BATON, Carte.AS_COUPE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE), new Defausse());
@@ -112,15 +153,23 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 7);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 0);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 7);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 0);
   }
 
   @Test
   void devrait_attribuer_les_bonus_au_joueur_ayant_la_meilleure_main_pour_chaque_phase() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Paso(), new Paso());
     var joueurZaku = unJoueurFaisantChoix(new Paso(), new Paso());
-    var opposants = new Opposants(joueurEsku, joueurZaku);
+    var joueurAllie = unJoueurFaisantChoix();
+    var joueurContre = unJoueurFaisantChoix();
+
+    var EquipeEsku = new Equipe(joueurEsku,joueurAllie);
+    var EquipeZaku = new Equipe(joueurContre,joueurZaku);
+
+    var opposants = new Opposants(EquipeEsku, EquipeZaku);
+
+
     var score = new Manche.Score(opposants);
 
     Tour tour = new Tour(evenementsDeJeu, paquetAvec(Carte.ROI_BATON, Carte.ROI_COUPE, Carte.VALET_BATON, Carte.AS_EPEE, Carte.DEUX_COUPE, Carte.TROIS_COUPE, Carte.QUATRE_COUPE, Carte.CINQ_COUPE), new Defausse());
@@ -128,8 +177,8 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 6);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 0);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 6);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 0);
   }
 
   private Evenements evenementsDeJeu;

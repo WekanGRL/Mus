@@ -13,7 +13,7 @@ public class Joueur {
     return new Joueur("Ordinateur", new InterfaceJoueurOrdinateur());
   }
 
-  private final String nom;
+  private  String nom;
   public final InterfaceJoueur interfaceJoueur;
   private final Main main = Main.vide();
   private Equipe equipe;
@@ -23,8 +23,12 @@ public class Joueur {
     this.interfaceJoueur = interfaceJoueur;
   }
 
-  public String nom() {
+  public String getNom() {
     return nom;
+  }
+
+  public void setNom(String nom) {
+    this.nom=nom;
   }
 
   public Main main() {
