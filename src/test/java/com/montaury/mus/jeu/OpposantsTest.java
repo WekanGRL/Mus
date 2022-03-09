@@ -18,22 +18,28 @@ class OpposantsTest {
 
 
 
-  //@Test
-  /*void nombre_de_joueurs() {
+  @Test
+  void devrait_avoir_deux_joueurs() {
 
-    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi");
+    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi",2);
 
-    Equipe equipeO =  Equipe.ordinateur();
+    assertThat(equipeH.getNombreJoueurs()==2).isTrue();
+  }
 
-    Opposants opposition = new Opposants(equipeH,equipeO);
+  @Test
+  void devrait_avoir_un_joueur() {
 
-    assertThat(equipeH.getJoueurDeux()).isNotNull();
-  }*/
- /* void devrait_tourner_dans_lordre() {
+    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi",1);
 
-    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi");
+    assertThat(equipeH.getNombreJoueurs()==1).isTrue();
+  }
 
-    Equipe equipeO =  Equipe.ordinateur();
+  @Test
+  void devrait_tourner_dans_lordre_en2v2() {
+
+    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi",2);
+
+    Equipe equipeO =  Equipe.ordinateur(2);
 
     Opposants opposition = new Opposants(equipeH,equipeO);
 
@@ -73,7 +79,44 @@ class OpposantsTest {
     assertThat(opposition.isEsku(equipeO.getJoueurUn())).isFalse();
     assertThat(opposition.isEsku(equipeO.getJoueurDeux())).isFalse();
 
-  }*/
+  }
+
+  @Test
+  void devrait_tourner_dans_lordre_en1v1() {
+
+    Equipe equipeH =  Equipe.humain("EquipeHumain",1);
+
+    Equipe equipeO =  Equipe.ordinateur(1);
+
+    Opposants opposition = new Opposants(equipeH,equipeO);
+
+    opposition.tourner();
+
+    //Apres T1, Joueur Humain devrait etre Zaku
+    //Apres T1, Joueur 1 dans equipe Ordi devrait etre Esku
+
+    assertThat(opposition.isZaku(equipeH.getJoueurUn())).isTrue();
+    assertThat(opposition.isZaku(equipeO.getJoueurUn())).isFalse();
+
+    assertThat(opposition.isEsku(equipeH.getJoueurUn())).isFalse();
+    assertThat(opposition.isEsku(equipeO.getJoueurUn())).isTrue();
+
+
+    opposition.tourner();
+
+    //Apres T2, Joueur Humain devrait etre Esku
+    //Apres T2, Joueur 1 dans equipe Ordi devrait etre Zaku
+
+    assertThat(opposition.isZaku(equipeH.getJoueurUn())).isFalse();
+    assertThat(opposition.isZaku(equipeO.getJoueurUn())).isTrue();
+
+    assertThat(opposition.isEsku(equipeH.getJoueurUn())).isTrue();
+    assertThat(opposition.isEsku(equipeO.getJoueurUn())).isFalse();
+
+
+  }
+
+
 
 
 }

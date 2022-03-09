@@ -21,13 +21,12 @@ public class JeuDeMus {
 
     if(jeuSaisi.equals("1"))
     {
-      System.out.println("Je suis 1v1");
-      var equipeHumain = Equipe.humain(nomJoueur,jeuSaisi);
+      var equipeHumain = Equipe.humain(nomJoueur,Integer.parseInt(jeuSaisi));
 
-      var equipeOrdi=Equipe.ordinateur(jeuSaisi);
+      var equipeOrdi=Equipe.ordinateur(Integer.parseInt(jeuSaisi));
 
       var partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
-       var resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
+      var resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
       System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
 
 
@@ -37,9 +36,9 @@ public class JeuDeMus {
       System.out.print("Entrez votre nom d'équipe: ");
       var nomEquipe = new Scanner(System.in).next();
 
-      var equipeHumain = Equipe.humain(nomEquipe,jeuSaisi);
+      var equipeHumain = Equipe.humain(nomEquipe,Integer.parseInt(jeuSaisi));
 
-      var equipeOrdi=Equipe.ordinateur(jeuSaisi);
+      var equipeOrdi=Equipe.ordinateur(Integer.parseInt(jeuSaisi));
 
       equipeOrdi.getJoueurUn().setNom("Ordinateur ennemi 1");
       equipeOrdi.getJoueurDeux().setNom("Ordinateur ennemi 2");

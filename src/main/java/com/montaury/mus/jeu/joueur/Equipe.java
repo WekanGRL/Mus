@@ -3,14 +3,14 @@ package com.montaury.mus.jeu.joueur;
 public class Equipe {
 
 
-    public static Equipe humain(String nom ,String nombreJoueurs) {
+    public static Equipe humain(String nom ,int nombreJoueurs) {
         Equipe resultat=null;
-        if (nombreJoueurs.equals("2"))
+        if (nombreJoueurs==2)
         {
             resultat= new Equipe(Joueur.humain(nom), Joueur.ordinateur());
             resultat.setNombreJoueurs(2);
         }
-        else if (nombreJoueurs.equals("1")) {
+        else if (nombreJoueurs==1) {
              resultat= new Equipe(Joueur.humain(nom));
             resultat.setNombreJoueurs(1);
         }
@@ -19,14 +19,14 @@ public class Equipe {
 
 
 
-    public static Equipe ordinateur(String nombreJoueurs) {
+    public static Equipe ordinateur(int nombreJoueurs) {
         Equipe resultat=null;
-        if (nombreJoueurs.equals("2"))
+        if (nombreJoueurs==2)
         {
             resultat= new Equipe(Joueur.ordinateur(), Joueur.ordinateur());
             resultat.setNombreJoueurs(2);
         }
-        else if (nombreJoueurs.equals("1")) {
+        else if (nombreJoueurs==1) {
             resultat= new Equipe(Joueur.ordinateur());
             resultat.setNombreJoueurs(1);
         }
@@ -49,12 +49,14 @@ public class Equipe {
         this.joueurDeux = joueur2;
         this.joueurUn.setEquipe(this);
         this.joueurDeux.setEquipe(this);
+        this.nbJoueursEquipe=2;
     }
 
     public Equipe(Joueur joueur1) {
         this.nom = joueur1.getNom();
         this.joueurUn = joueur1;
         joueur1.setEquipe(this);
+        this.nbJoueursEquipe=1;
     }
 
     public Joueur getJoueurUn() {

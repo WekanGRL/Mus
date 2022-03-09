@@ -2,6 +2,7 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,59 +36,60 @@ public class  Participants {
     return dansLOrdre.get(0);
   }
 
-  /*
+
   public Joueur adversaireDe(Joueur joueurParlant, Choix choixFait) {
     Joueur adversaire;
     int indiceJoueurParlant = dansLOrdre.indexOf(joueurParlant);
-    if(choixFait.est(TypeChoix.GEHIAGO)){
-      if(indiceJoueurParlant + 1 == dansLOrdre.size()){
+    if (choixFait.est(TypeChoix.GEHIAGO)) {
+      if (indiceJoueurParlant + 1 == dansLOrdre.size()) {
         adversaire = dansLOrdre.get(0);
-      }else{
+      } else {
         adversaire = dansLOrdre.get(indiceJoueurParlant + 1);
       }
-    }else{
-      if(indiceJoueurParlant - 1 == -1){
+    } else {
+      if (indiceJoueurParlant - 1 == -1) {
         adversaire = dansLOrdre.get(dansLOrdre.size() - 1);
-      }else{
+      } else {
         adversaire = dansLOrdre.get(indiceJoueurParlant - 1);
       }
     }
     return adversaire;
   }
-*/
+
 
   public Joueur adversaireDe(Joueur joueurParlant, Choix choixFait) {
     Joueur adversaire = null;
     int indiceJoueurParlant = dansLOrdre.indexOf(joueurParlant);
-    switch(indiceJoueurParlant){
-      case 0:
-        if(joueurParlant.getEquipe() != dansLOrdre.get(1).getEquipe()){
-          adversaire = dansLOrdre.get(1);
-        }
-        else{
-          adversaire = dansLOrdre.get(2);
-        }
-        break;
-      case 1:
-        if(joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()){
-          adversaire = dansLOrdre.get(0);
-        }
-        else{
-          adversaire = dansLOrdre.get(2);
-        }
-        break;
-      case 2:
+    if(joueurParlant.getEquipe().getNombreJoueurs()==2){
+      switch(indiceJoueurParlant) {
+        case 0:
+          if (joueurParlant.getEquipe() != dansLOrdre.get(1).getEquipe()) {
+            adversaire = dansLOrdre.get(1);
+          } else {
+            adversaire = dansLOrdre.get(2);
+          }
+          break;
+        case 1:
+          if (joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()) {
+            adversaire = dansLOrdre.get(0);
+          } else {
+            adversaire = dansLOrdre.get(2);
+          }
+          break;
+        case 2:
 
-      case 3:
-        if(joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()){
-          adversaire = dansLOrdre.get(0);
-        }
-        else{
-          adversaire = dansLOrdre.get(1);
-        }
-        break;
-    }
-    return adversaire;
+        case 3:
+          if (joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()) {
+            adversaire = dansLOrdre.get(0);
+          } else {
+            adversaire = dansLOrdre.get(1);
+          }
+          break;
+      }
+      else{
+
+      }
+      }return adversaire;
   }
 
 

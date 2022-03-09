@@ -39,6 +39,7 @@ class DialogueTest {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
     Joueur joueur2 = unJoueurFaisantChoix(new Imido());
 
+
     Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
 
     assertThat(recapitulatif.pointsEngages()).isOne();
@@ -48,6 +49,7 @@ class DialogueTest {
   void est_termine_si_le_dernier_choix_est_idoki() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Idoki());
     Joueur joueur2 = unJoueurFaisantChoix(new Imido());
+
 
     Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
 
