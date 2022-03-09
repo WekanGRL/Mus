@@ -18,8 +18,8 @@ class OpposantsTest {
 
 
 
-  @Test
-  void nombre_de_joueurs() {
+  //@Test
+  /*void nombre_de_joueurs() {
 
     Equipe equipeH =  Equipe.humain("EquipeHumainOrdi");
 
@@ -28,8 +28,8 @@ class OpposantsTest {
     Opposants opposition = new Opposants(equipeH,equipeO);
 
     assertThat(equipeH.getJoueurDeux()).isNotNull();
-  }
-  void devrait_tourner_dans_lordre() {
+  }*/
+ /* void devrait_tourner_dans_lordre() {
 
     Equipe equipeH =  Equipe.humain("EquipeHumainOrdi");
 
@@ -73,7 +73,7 @@ class OpposantsTest {
     assertThat(opposition.isEsku(equipeO.getJoueurUn())).isFalse();
     assertThat(opposition.isEsku(equipeO.getJoueurDeux())).isFalse();
 
-  }
+  }*/
 
 
 }

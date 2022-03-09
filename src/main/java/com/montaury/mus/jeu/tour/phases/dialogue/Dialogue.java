@@ -2,6 +2,7 @@ package com.montaury.mus.jeu.tour.phases.dialogue;
 
 import com.montaury.mus.jeu.Manche;
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.Participants;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
@@ -36,6 +37,8 @@ public class Dialogue {
     return new Recapitulatif(choix);
   }
 
+
+
   public static class ChoixJoueur {
     public final Choix choix;
     public final Joueur joueur;
@@ -60,6 +63,20 @@ public class Dialogue {
     private Iterator<Joueur> joueursDevantParler;
     private List<TypeChoix> prochainsChoixPossibles = TypeChoix.INITIAUX;
     private Joueur joueurParlant;
+
+    public Deroulement tira(){
+      Equipe monEquipe = joueurParlant.getEquipe();
+      for(Joueur joueur : participants.dansLOrdre())
+      {
+        if(joueur.getEquipe() == monEquipe && joueur != joueurParlant)
+        {
+          joueursDevantParler = Collections.singletonList(joueur).iterator();
+          this.retirerJoueurParlant();
+          return this;
+        }
+      }
+      return Deroulement.termine();
+    }
 
     public Deroulement(Participants participants) {
       this.participants = participants;

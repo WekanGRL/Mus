@@ -14,14 +14,21 @@ public class Opposants {
     this.equipeEsku = equipeUn;
     this.equipeZaku = equipeDeux;
 
-
-
-
-    // On considère que l'équipe 1 commence :
-    fileJoueur.add(equipeUn.getJoueurUn());
-    fileJoueur.add(equipeDeux.getJoueurUn());
-    fileJoueur.add(equipeUn.getJoueurDeux());
-    fileJoueur.add(equipeDeux.getJoueurDeux());
+    if (equipeUn.getNombreJoueurs() == 2 && equipeDeux.getNombreJoueurs() == 2) {
+      // On considère que l'équipe 1 commence :
+      fileJoueur.add(equipeUn.getJoueurUn());
+      fileJoueur.add(equipeDeux.getJoueurUn());
+      fileJoueur.add(equipeUn.getJoueurDeux());
+      fileJoueur.add(equipeDeux.getJoueurDeux());
+    }
+    else
+    {
+      if(equipeUn.getNombreJoueurs() == 1 && equipeDeux.getNombreJoueurs() == 1)
+      {
+        fileJoueur.add(equipeUn.getJoueurUn());
+        fileJoueur.add(equipeDeux.getJoueurUn());
+      }
+    }
   }
 
   public Opposants(Joueur joueurUn, Joueur joueurDeux){

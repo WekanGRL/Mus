@@ -77,6 +77,7 @@ public class  Participants {
         }
         break;
       case 2:
+
       case 3:
         if(joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()){
           adversaire = dansLOrdre.get(0);
