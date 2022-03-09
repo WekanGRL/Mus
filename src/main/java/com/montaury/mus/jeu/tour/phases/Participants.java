@@ -1,10 +1,12 @@
 package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.joueur.Joueur;
+import com.montaury.mus.jeu.tour.phases.dialogue.choix.Choix;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Participants {
+public class  Participants {
   private final List<Joueur> dansLOrdre;
 
   public Participants(List<Joueur> dansLOrdre) {
@@ -19,29 +21,79 @@ public class Participants {
     return dansLOrdre.size() == 1;
   }
 
+  public boolean equipeEstUnique(){
+    var uneEquipe = dansLOrdre.get(0).getEquipe();
+    for(int i = 1; i < dansLOrdre.size(); i++){
+      if(dansLOrdre.get(i).getEquipe() != uneEquipe){
+        return false;
+      }
+    }
+    return true;
+  }
+
   public Joueur premier() {
     return dansLOrdre.get(0);
   }
 
-  public Joueur adversaireDe(Joueur joueurParlant) {
-    int indiceJoueurParlant = dansLOrdre.lastIndexOf(joueurParlant);
-
-    if(indiceJoueurParlant == dansLOrdre.size()-1)  // Cas où le joueur parlant est le dernier
-    {
-      return premier();
+  /*
+  public Joueur adversaireDe(Joueur joueurParlant, Choix choixFait) {
+    Joueur adversaire;
+    int indiceJoueurParlant = dansLOrdre.indexOf(joueurParlant);
+    if(choixFait.est(TypeChoix.GEHIAGO)){
+      if(indiceJoueurParlant + 1 == dansLOrdre.size()){
+        adversaire = dansLOrdre.get(0);
+      }else{
+        adversaire = dansLOrdre.get(indiceJoueurParlant + 1);
+      }
+    }else{
+      if(indiceJoueurParlant - 1 == -1){
+        adversaire = dansLOrdre.get(dansLOrdre.size() - 1);
+      }else{
+        adversaire = dansLOrdre.get(indiceJoueurParlant - 1);
+      }
     }
-    else
-    {
-      return dansLOrdre.get(indiceJoueurParlant+1);
-    }
+    return adversaire;
   }
+*/
+
+  public Joueur adversaireDe(Joueur joueurParlant, Choix choixFait) {
+    Joueur adversaire = null;
+    int indiceJoueurParlant = dansLOrdre.indexOf(joueurParlant);
+    switch(indiceJoueurParlant){
+      case 0:
+        if(joueurParlant.getEquipe() != dansLOrdre.get(1).getEquipe()){
+          adversaire = dansLOrdre.get(1);
+        }
+        else{
+          adversaire = dansLOrdre.get(2);
+        }
+        break;
+      case 1:
+        if(joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()){
+          adversaire = dansLOrdre.get(0);
+        }
+        else{
+          adversaire = dansLOrdre.get(2);
+        }
+        break;
+      case 2:
+      case 3:
+        if(joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()){
+          adversaire = dansLOrdre.get(0);
+        }
+        else{
+          adversaire = dansLOrdre.get(1);
+        }
+        break;
+    }
+    return adversaire;
+  }
+
 
 
   public Iterable<Joueur> dansLOrdre() {
     return dansLOrdre;
   }
-
-
 
   public Participants retirer(Joueur joueur) {
     var joueurs = new ArrayList<>(dansLOrdre);
@@ -49,3 +101,4 @@ public class Participants {
     return new Participants(joueurs);
   }
 }
+

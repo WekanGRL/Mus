@@ -19,6 +19,16 @@ class OpposantsTest {
 
 
   @Test
+  void nombre_de_joueurs() {
+
+    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi");
+
+    Equipe equipeO =  Equipe.ordinateur();
+
+    Opposants opposition = new Opposants(equipeH,equipeO);
+
+    assertThat(equipeH.getJoueurDeux()).isNotNull();
+  }
   void devrait_tourner_dans_lordre() {
 
     Equipe equipeH =  Equipe.humain("EquipeHumainOrdi");

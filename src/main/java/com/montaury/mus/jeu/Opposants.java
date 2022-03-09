@@ -14,6 +14,9 @@ public class Opposants {
     this.equipeEsku = equipeUn;
     this.equipeZaku = equipeDeux;
 
+
+
+
     // On considère que l'équipe 1 commence :
     fileJoueur.add(equipeUn.getJoueurUn());
     fileJoueur.add(equipeDeux.getJoueurUn());
@@ -25,6 +28,8 @@ public class Opposants {
     fileJoueur.add(joueurUn);
     fileJoueur.add(joueurDeux);
   }
+
+
 
   public void tourner() {
     var tmp=fileJoueur.remove();
