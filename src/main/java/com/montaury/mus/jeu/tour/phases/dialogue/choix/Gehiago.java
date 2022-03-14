@@ -13,6 +13,6 @@ public class Gehiago extends Mise {
 
 
   public Dialogue.Deroulement influerSur(Dialogue.Deroulement deroulement) {
-    return deroulement.basculerSurAdversaire(prochainsChoixPossibles(), this);
+    return deroulement.basculerSurAdversaire(prochainsChoixPossibles());
   }
 }

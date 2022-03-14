@@ -1,6 +1,7 @@
 package com.montaury.mus.jeu.tour.phases.dialogue;
 
 import com.montaury.mus.jeu.evenements.Evenements;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.tour.phases.Participants;
 import com.montaury.mus.jeu.tour.phases.dialogue.choix.Hordago;
@@ -34,22 +35,29 @@ class DialogueTest {
     assertThat(recapitulatif.pointsEngages()).isOne();
   }
 
+
   @Test
   void est_termine_si_le_dernier_choix_est_tira() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
     Joueur joueur2 = unJoueurFaisantChoix(new Imido());
 
+    var equipeEsku = new Equipe(joueur1);
+    var equipeZaku = new Equipe(joueur2);
 
-    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(), equipeZaku.getJoueurUn())));
 
     assertThat(recapitulatif.pointsEngages()).isOne();
   }
+
 
   @Test
   void est_termine_si_le_dernier_choix_est_idoki() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Idoki());
     Joueur joueur2 = unJoueurFaisantChoix(new Imido());
 
+    var equipeEsku = new Equipe(joueur1);
+    var equipeZaku = new Equipe(joueur2);
 
     Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
 
@@ -60,6 +68,9 @@ class DialogueTest {
   void est_termine_si_le_dernier_choix_est_kanta() {
     Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Kanta());
     Joueur joueur2 = unJoueurFaisantChoix(new Hordago());
+
+    var equipeEsku = new Equipe(joueur1);
+    var equipeZaku = new Equipe(joueur2);
 
     Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
 

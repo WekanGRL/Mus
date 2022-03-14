@@ -37,60 +37,18 @@ public class  Participants {
   }
 
 
-  public Joueur adversaireDe(Joueur joueurParlant, Choix choixFait) {
-    Joueur adversaire;
-    int indiceJoueurParlant = dansLOrdre.indexOf(joueurParlant);
-    if (choixFait.est(TypeChoix.GEHIAGO)) {
-      if (indiceJoueurParlant + 1 == dansLOrdre.size()) {
-        adversaire = dansLOrdre.get(0);
-      } else {
-        adversaire = dansLOrdre.get(indiceJoueurParlant + 1);
-      }
-    } else {
-      if (indiceJoueurParlant - 1 == -1) {
-        adversaire = dansLOrdre.get(dansLOrdre.size() - 1);
-      } else {
-        adversaire = dansLOrdre.get(indiceJoueurParlant - 1);
-      }
+
+
+  public Joueur adversaireDe(Joueur joueurParlant) {
+    Joueur adversaire = null;
+    if(dansLOrdre.get(0).getEquipe() == joueurParlant.getEquipe())
+      adversaire = dansLOrdre.get(1);
+    else{
+      adversaire = dansLOrdre.get(0);
     }
     return adversaire;
   }
 
-
-  public Joueur adversaireDe(Joueur joueurParlant, Choix choixFait) {
-    Joueur adversaire = null;
-    int indiceJoueurParlant = dansLOrdre.indexOf(joueurParlant);
-    if(joueurParlant.getEquipe().getNombreJoueurs()==2){
-      switch(indiceJoueurParlant) {
-        case 0:
-          if (joueurParlant.getEquipe() != dansLOrdre.get(1).getEquipe()) {
-            adversaire = dansLOrdre.get(1);
-          } else {
-            adversaire = dansLOrdre.get(2);
-          }
-          break;
-        case 1:
-          if (joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()) {
-            adversaire = dansLOrdre.get(0);
-          } else {
-            adversaire = dansLOrdre.get(2);
-          }
-          break;
-        case 2:
-
-        case 3:
-          if (joueurParlant.getEquipe() != dansLOrdre.get(0).getEquipe()) {
-            adversaire = dansLOrdre.get(0);
-          } else {
-            adversaire = dansLOrdre.get(1);
-          }
-          break;
-      }
-      else{
-
-      }
-      }return adversaire;
-  }
 
 
 
@@ -103,5 +61,7 @@ public class  Participants {
     joueurs.remove(joueur);
     return new Participants(joueurs);
   }
+
+
 }
 

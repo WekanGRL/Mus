@@ -15,9 +15,15 @@ public class JeuDeMus {
     System.out.print("Entrez votre nom: ");
     var nomJoueur = new Scanner(System.in).next();
 
-    System.out.print("Voulez-vous jouer en 1v1(tapez 1) ou 2v2 (tapez 2): ");
+    System.out.print("Voulez-vous jouer en 1v1(tapez 1) ou 2v2(tapez 2): ");
     var jeuSaisi = new Scanner(System.in).next();
+    var typeDeJeu=Integer.parseInt(jeuSaisi);
 
+    while((!(typeDeJeu==1))&&(!(typeDeJeu==2)))
+    {
+      System.out.print("Voulez-vous jouer en 1v1(tapez 1) ou 2v2(tapez 2): ");
+       jeuSaisi = new Scanner(System.in).next();
+    }
 
     if(jeuSaisi.equals("1"))
     {
@@ -47,23 +53,10 @@ public class JeuDeMus {
       equipeHumain.getJoueurDeux().setNom("Ordinateur Allie");
 
       var partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
-       var resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
-       System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
-
-
+      var resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
+      System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
 
     }
-
-
-
-
-
-
-    }
-
-
-
-
-
   }
+}
 

@@ -23,7 +23,7 @@ class MancheTest {
   }
 
   @Test
-  void devrait_terminer_la_manche_si_hordago_au_grand() {
+  void devrait_terminer_la_manche_si_hordago_au_grand_1v1() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
     var joueurZaku = unJoueurFaisantChoix(new Kanta());
     var opposants = new Opposants(new Equipe(joueurEsku), new Equipe(joueurZaku));
@@ -33,6 +33,23 @@ class MancheTest {
     assertThat(resultat.vainqueur()).isNotNull();
     assertThat(resultat.pointsVaincu()).isZero();
   }
+
+  /*
+  @Test
+  void devrait_terminer_la_manche_si_hordago_au_grand_2v2() {
+    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Hordago());
+    var joueurApresEsku = unJoueurFaisantChoix(new Kanta());
+    var joueurAvantZaku = unJoueurFaisantChoix(new Kanta());
+    var joueurZaku = unJoueurFaisantChoix(new Kanta());
+
+    var opposants = new Opposants(new Equipe(joueurEsku,joueurAvantZaku), new Equipe(joueurZaku,joueurApresEsku));
+
+    var resultat = manche.jouer(opposants);
+
+    assertThat(resultat.vainqueur()).isNotNull();
+    assertThat(resultat.pointsVaincu()).isZero();
+  }*/
+
 
   @Test
   void devrait_terminer_la_manche_si_un_joueur_a_40_points() {

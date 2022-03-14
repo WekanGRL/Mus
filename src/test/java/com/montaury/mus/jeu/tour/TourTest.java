@@ -32,7 +32,7 @@ class TourTest {
   }
 
   @Test
-  void devrait_donner_tous_les_points_au_joueur_esku_si_le_joueur_zaku_fait_tira() {
+  void devrait_donner_tous_les_points_au_joueur_esku_si_le_joueur_zaku_fait_tira1v1() {
     var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
     var joueurZaku = unJoueurFaisantChoix(new Tira());
 
@@ -45,6 +45,26 @@ class TourTest {
     assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 8);
     assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 0);
   }
+/*
+  @Test
+  void devrait_donner_tous_les_points_au_joueur_esku_si_le_joueur_zaku_fait_tira2v2() {
+    var joueurEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
+    var joueurZaku = unJoueurFaisantChoix(new Tira());
+    var joueurApresEsku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
+    var joueurAvantZaku = unJoueurFaisantChoix(new Mintza(), new Imido(), new Imido(), new Imido(), new Imido());
+
+
+    var opposants = new Opposants(new Equipe(joueurEsku,joueurAvantZaku), new Equipe(joueurZaku,joueurApresEsku));
+    var score = new Manche.Score(opposants);
+
+    tour.jouer(opposants, score);
+
+    assertThat(score.vainqueur()).isEmpty();
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.getEquipe(), 8);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.getEquipe(), 0);
+  }*/
+
+
 
   @Test
   void devrait_repartir_les_points_si_tout_est_paso() {

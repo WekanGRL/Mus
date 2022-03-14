@@ -1,5 +1,7 @@
 package com.montaury.mus.jeu.joueur;
 
+import java.util.List;
+
 public class Equipe {
 
 
@@ -41,6 +43,7 @@ public class Equipe {
     private Joueur joueurUn;
     private Joueur joueurDeux;
 
+
     private int nbJoueursEquipe;
 
     public Equipe(Joueur joueur1, Joueur joueur2) {
@@ -74,6 +77,9 @@ public class Equipe {
     public void setNombreJoueurs( int nombreJoueurs) {
         nbJoueursEquipe=nombreJoueurs;
     }
+
+
+
 
     public String nom() {
         return nom;
