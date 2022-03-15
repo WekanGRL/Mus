@@ -10,5 +10,6 @@ public class Tira extends Choix {
   @Override
   public Dialogue.Deroulement influerSur(Dialogue.Deroulement deroulement) {
     return deroulement.retirerJoueurParlant();
+    //Retrun deroulement .tira();
   }
 }

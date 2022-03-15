@@ -4,46 +4,10 @@ import java.util.List;
 
 public class Equipe {
 
-
-    public static Equipe humain(String nom ,int nombreJoueurs) {
-        Equipe resultat=null;
-        if (nombreJoueurs==2)
-        {
-            resultat= new Equipe(Joueur.humain(nom), Joueur.ordinateur());
-            resultat.setNombreJoueurs(2);
-        }
-        else if (nombreJoueurs==1) {
-             resultat= new Equipe(Joueur.humain(nom));
-            resultat.setNombreJoueurs(1);
-        }
-        return resultat;
-    }
-
-
-
-    public static Equipe ordinateur(int nombreJoueurs) {
-        Equipe resultat=null;
-        if (nombreJoueurs==2)
-        {
-            resultat= new Equipe(Joueur.ordinateur(), Joueur.ordinateur());
-            resultat.setNombreJoueurs(2);
-        }
-        else if (nombreJoueurs==1) {
-            resultat= new Equipe(Joueur.ordinateur());
-            resultat.setNombreJoueurs(1);
-        }
-        return resultat;
-    }
-
-
-
     private final String nom;
     private final Main main = Main.vide();
-
     private Joueur joueurUn;
     private Joueur joueurDeux;
-
-
     private int nbJoueursEquipe;
 
     public Equipe(Joueur joueur1, Joueur joueur2) {
@@ -62,6 +26,8 @@ public class Equipe {
         this.nbJoueursEquipe=1;
     }
 
+
+
     public Joueur getJoueurUn() {
         return joueurUn;
     }
@@ -79,14 +45,41 @@ public class Equipe {
     }
 
 
-
-
     public String nom() {
         return nom;
     }
 
     public Main main() {
         return main;
+    }
+
+    public static Equipe humain(String nom ,int nombreJoueurs) {
+        Equipe resultat=null;
+        if (nombreJoueurs==2)
+        {
+            resultat= new Equipe(Joueur.humain(nom), Joueur.ordinateur());
+            resultat.setNombreJoueurs(2);
+        }
+        else if (nombreJoueurs==1) {
+            resultat= new Equipe(Joueur.humain(nom));
+            resultat.setNombreJoueurs(1);
+        }
+        return resultat;
+    }
+
+
+    public static Equipe ordinateur(int nombreJoueurs) {
+        Equipe resultat=null;
+        if (nombreJoueurs==2)
+        {
+            resultat= new Equipe(Joueur.ordinateur(), Joueur.ordinateur());
+            resultat.setNombreJoueurs(2);
+        }
+        else if (nombreJoueurs==1) {
+            resultat= new Equipe(Joueur.ordinateur());
+            resultat.setNombreJoueurs(1);
+        }
+        return resultat;
     }
 
 }

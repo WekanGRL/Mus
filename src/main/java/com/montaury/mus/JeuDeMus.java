@@ -11,7 +11,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class JeuDeMus {
+
+
   public static void main(String[] args) {
+    Equipe equipeHumain;
+    Equipe equipeOrdi;
+    Partie partie;
+    Partie.Resultat resultat;
+
     System.out.print("Entrez votre nom: ");
     var nomJoueur = new Scanner(System.in).next();
 
@@ -27,33 +34,31 @@ public class JeuDeMus {
 
     if(jeuSaisi.equals("1"))
     {
-      var equipeHumain = Equipe.humain(nomJoueur,Integer.parseInt(jeuSaisi));
+      equipeHumain = Equipe.humain(nomJoueur,Integer.parseInt(jeuSaisi));
+      equipeOrdi=Equipe.ordinateur(Integer.parseInt(jeuSaisi));
 
-      var equipeOrdi=Equipe.ordinateur(Integer.parseInt(jeuSaisi));
-
-      var partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
-      var resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
+      partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
+      resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
       System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
-
-
     }
     else
     {
       System.out.print("Entrez votre nom d'équipe: ");
       var nomEquipe = new Scanner(System.in).next();
 
-      var equipeHumain = Equipe.humain(nomEquipe,Integer.parseInt(jeuSaisi));
+      equipeHumain = Equipe.humain(nomEquipe,Integer.parseInt(jeuSaisi));
+      equipeOrdi=Equipe.ordinateur(Integer.parseInt(jeuSaisi));
 
-      var equipeOrdi=Equipe.ordinateur(Integer.parseInt(jeuSaisi));
 
       equipeOrdi.getJoueurUn().setNom("Ordinateur ennemi 1");
       equipeOrdi.getJoueurDeux().setNom("Ordinateur ennemi 2");
-
       equipeHumain.getJoueurUn().setNom(nomJoueur);
       equipeHumain.getJoueurDeux().setNom("Ordinateur Allie");
 
-      var partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
-      var resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
+
+
+       partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
+       resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
       System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
 
     }

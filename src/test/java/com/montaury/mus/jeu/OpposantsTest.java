@@ -34,6 +34,7 @@ class OpposantsTest {
     assertThat(equipeH.getNombreJoueurs()==1).isTrue();
   }
 
+
   @Test
   void devrait_tourner_dans_lordre_en2v2() {
 
