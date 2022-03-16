@@ -17,6 +17,8 @@ import static org.mockito.Mockito.mock;
 class OpposantsTest {
 
 
+
+
   @Test
   void devrait_renvoyer_les_joueurs_dans_lordre2v2()
   {

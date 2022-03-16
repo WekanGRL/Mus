@@ -24,7 +24,6 @@ public class AffichageEvenements implements Evenements {
   @Override
   public void nouvelleManche() {
     afficher("-------------------------------------------------");
-
     afficher("Nouvelle Manche");
     afficher("-------------------------------------------------");
   }

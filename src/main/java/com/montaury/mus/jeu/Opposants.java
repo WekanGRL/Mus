@@ -41,8 +41,9 @@ public class Opposants {
   public void tourner() {
     var tmp=fileJoueur.remove();
     fileJoueur.add(tmp);
-
   }
+
+
 
   public Equipe equipeEsku() {
     return this.equipeEsku;

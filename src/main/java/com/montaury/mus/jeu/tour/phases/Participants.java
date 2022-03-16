@@ -18,14 +18,12 @@ public class  Participants {
     return dansLOrdre.isEmpty();
   }
 
-  public boolean estUnique() {
-    return dansLOrdre.size() == 1;
-  }
 
-  public boolean equipeEstUnique(){
-    var uneEquipe = dansLOrdre.get(0).getEquipe();
+
+  public boolean estUnique(){
+    var equipeRecupee = dansLOrdre.get(0).getEquipe();
     for(int i = 1; i < dansLOrdre.size(); i++){
-      if(dansLOrdre.get(i).getEquipe() != uneEquipe){
+      if(dansLOrdre.get(i).getEquipe() != equipeRecupee){
         return false;
       }
     }
@@ -35,8 +33,6 @@ public class  Participants {
   public Joueur premier() {
     return dansLOrdre.get(0);
   }
-
-
 
 
   public Joueur adversaireDe(Joueur joueurParlant) {

@@ -23,15 +23,18 @@ public class JeuDeMus {
     var nomJoueur = new Scanner(System.in).next();
 
     System.out.print("Voulez-vous jouer en 1v1(tapez 1) ou 2v2(tapez 2): ");
-    var typeDeJeu=Integer.parseInt(new Scanner(System.in).next());
+    var modeDeJeu =new Scanner(System.in).next();
 
-    while((!(typeDeJeu==1))&&(!(typeDeJeu==2)))
+
+    while((!(modeDeJeu.equals("1")))&&(!(modeDeJeu.equals("2"))))
     {
       System.out.print("Voulez-vous jouer en 1v1(tapez 1) ou 2v2(tapez 2): ");
-      typeDeJeu=Integer.parseInt(new Scanner(System.in).next());
+      modeDeJeu =new Scanner(System.in).next();
     }
+    var typeDeJeu=Integer.parseInt(modeDeJeu);
 
     equipeOrdi=Equipe.ordinateur(typeDeJeu);
+
 
 
     if(typeDeJeu==1)
