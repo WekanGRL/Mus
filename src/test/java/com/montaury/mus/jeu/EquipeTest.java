@@ -25,6 +25,22 @@ class EquipeTest {
     assertThat(equipeH.getNombreJoueurs()==1).isTrue();
   }
 
+  @Test
+  void devrait_creer_2_joueurs_qui_sont_des_joueurs_ordinateurs()
+  {
+    Equipe equipeOrdinateur =Equipe.ordinateur(2);
 
+    assertThat(equipeOrdinateur.getJoueurUn().getNom()=="Ordinateur" && equipeOrdinateur.getJoueurDeux().getNom()=="Ordinateur").isTrue();
+
+  }
+
+  @Test
+  void devrait_creer_1_joueur_humain_et_un_joueur_ordinateur()
+  {
+    Equipe equipeHumain =Equipe.humain("equipeTest",2);
+
+    assertThat(equipeHumain.getJoueurUn().getNom()=="equipeTest" && equipeHumain.getJoueurDeux().getNom()=="Ordinateur").isTrue();
+
+  }
 
 }

@@ -40,11 +40,6 @@ public class Equipe {
         return nbJoueursEquipe;
     }
 
-    public void setNombreJoueurs( int nombreJoueurs) {
-        nbJoueursEquipe=nombreJoueurs;
-    }
-
-
     public String nom() {
         return nom;
     }
@@ -58,11 +53,9 @@ public class Equipe {
         if (nombreJoueurs==2)
         {
             resultat= new Equipe(Joueur.humain(nom), Joueur.ordinateur());
-            resultat.setNombreJoueurs(2);
         }
         else if (nombreJoueurs==1) {
             resultat= new Equipe(Joueur.humain(nom));
-            resultat.setNombreJoueurs(1);
         }
         return resultat;
     }
@@ -73,11 +66,9 @@ public class Equipe {
         if (nombreJoueurs==2)
         {
             resultat= new Equipe(Joueur.ordinateur(), Joueur.ordinateur());
-            resultat.setNombreJoueurs(2);
         }
         else if (nombreJoueurs==1) {
             resultat= new Equipe(Joueur.ordinateur());
-            resultat.setNombreJoueurs(1);
         }
         return resultat;
     }

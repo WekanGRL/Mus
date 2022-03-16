@@ -25,24 +25,30 @@ class DialogueTest {
     dialogue = new Dialogue(mock(Evenements.class));
   }
 
+  /////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /////////////////////////////Test 1V1\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   @Test
-  void engage_un_point_si_les_2_participants_sont_paso() {
-    Joueur joueur1 = unJoueurFaisantChoix(new Paso());
-    Joueur joueur2 = unJoueurFaisantChoix(new Paso());
+  void engage_un_point_si_les_2_participants_sont_paso1v1() {
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Paso());
 
-    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+    var equipeEsku = new Equipe(joueurEsku);
+    var equipeZaku = new Equipe(joueurZaku);
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(), equipeZaku.getJoueurUn())));
 
     assertThat(recapitulatif.pointsEngages()).isOne();
   }
 
 
   @Test
-  void est_termine_si_le_dernier_choix_est_tira() {
-    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Tira());
-    Joueur joueur2 = unJoueurFaisantChoix(new Imido());
+  void est_termine_si_le_dernier_choix_est_tira1v1() {
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso(), new Tira());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Imido());
 
-    var equipeEsku = new Equipe(joueur1);
-    var equipeZaku = new Equipe(joueur2);
+    var equipeEsku = new Equipe(joueurEsku);
+    var equipeZaku = new Equipe(joueurZaku);
 
 
     Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(), equipeZaku.getJoueurUn())));
@@ -52,27 +58,98 @@ class DialogueTest {
 
 
   @Test
-  void est_termine_si_le_dernier_choix_est_idoki() {
-    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Idoki());
-    Joueur joueur2 = unJoueurFaisantChoix(new Imido());
+  void est_termine_si_le_dernier_choix_est_idoki1v1() {
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso(), new Idoki());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Imido());
 
-    var equipeEsku = new Equipe(joueur1);
-    var equipeZaku = new Equipe(joueur2);
+    var equipeEsku = new Equipe(joueurEsku);
+    var equipeZaku = new Equipe(joueurZaku);
 
-    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(), equipeZaku.getJoueurUn())));
 
     assertThat(recapitulatif.pointsEngages()).isEqualTo(2);
   }
 
   @Test
-  void est_termine_si_le_dernier_choix_est_kanta() {
-    Joueur joueur1 = unJoueurFaisantChoix(new Paso(), new Kanta());
-    Joueur joueur2 = unJoueurFaisantChoix(new Hordago());
+  void est_termine_si_le_dernier_choix_est_kanta1v1() {
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso(), new Kanta());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Hordago());
 
-    var equipeEsku = new Equipe(joueur1);
-    var equipeZaku = new Equipe(joueur2);
+    var equipeEsku = new Equipe(joueurEsku);
+    var equipeZaku = new Equipe(joueurZaku);
 
-    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(joueur1, joueur2)));
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(), equipeZaku.getJoueurUn())));
+
+    assertThat(recapitulatif.pointsEngages()).isEqualTo(40);
+  }
+
+
+  /////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /////////////////////////////Test 2V2\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  /////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+  @Test
+  void engage_un_point_si_les_2_equipe_sont_paso2v2() {
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso());
+    Joueur joueurApresEsku = unJoueurFaisantChoix(new Paso());
+    Joueur joueurAvantZaku = unJoueurFaisantChoix(new Paso());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Paso());
+
+    var equipeEsku = new Equipe(joueurEsku,joueurAvantZaku);
+    var equipeZaku = new Equipe(joueurApresEsku,joueurZaku);
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(),equipeEsku.getJoueurDeux(), equipeZaku.getJoueurUn(),equipeZaku.getJoueurDeux())));
+
+
+    assertThat(recapitulatif.pointsEngages()).isOne();
+  }
+
+
+  @Test
+  void est_termine_si_le_dernier_choix_est_tira2v2() {
+
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso(), new Tira());
+    Joueur joueurApresEsku = unJoueurFaisantChoix(new Imido());
+    Joueur joueurAvantZaku = unJoueurFaisantChoix(new Paso(), new Tira());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Paso(), new Tira());
+
+    var equipeEsku = new Equipe(joueurEsku,joueurAvantZaku);
+    var equipeZaku = new Equipe(joueurApresEsku,joueurZaku);
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(),equipeEsku.getJoueurDeux(), equipeZaku.getJoueurUn(),equipeZaku.getJoueurDeux())));
+
+    assertThat(recapitulatif.pointsEngages()).isOne();
+  }
+
+
+  @Test
+  void est_termine_si_le_dernier_choix_est_idoki2v2() {
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso(),new Idoki());
+    Joueur joueurApresEsku = unJoueurFaisantChoix(new Imido());
+    Joueur joueurAvantZaku = unJoueurFaisantChoix(new Paso());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Paso());
+
+    var equipeEsku = new Equipe(joueurEsku,joueurAvantZaku);
+    var equipeZaku = new Equipe(joueurApresEsku,joueurZaku);
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(),equipeEsku.getJoueurDeux(), equipeZaku.getJoueurUn(),equipeZaku.getJoueurDeux())));
+
+    assertThat(recapitulatif.pointsEngages()).isEqualTo(2);
+  }
+
+
+  @Test
+  void est_termine_si_le_dernier_choix_est_kanta2v2() {
+
+    Joueur joueurEsku = unJoueurFaisantChoix(new Paso(), new Kanta());
+    Joueur joueurApresEsku = unJoueurFaisantChoix(new Hordago());
+    Joueur joueurAvantZaku = unJoueurFaisantChoix(new Paso());
+    Joueur joueurZaku = unJoueurFaisantChoix(new Paso());
+
+    var equipeEsku = new Equipe(joueurEsku,joueurAvantZaku);
+    var equipeZaku = new Equipe(joueurApresEsku,joueurZaku);
+
+    Dialogue.Recapitulatif recapitulatif = dialogue.derouler(new Participants(List.of(equipeEsku.getJoueurUn(),equipeEsku.getJoueurDeux(), equipeZaku.getJoueurUn(),equipeZaku.getJoueurDeux())));
 
     assertThat(recapitulatif.pointsEngages()).isEqualTo(40);
   }

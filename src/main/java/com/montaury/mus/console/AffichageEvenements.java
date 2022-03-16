@@ -26,6 +26,7 @@ public class AffichageEvenements implements Evenements {
     afficher("-------------------------------------------------");
 
     afficher("Nouvelle Manche");
+    afficher("-------------------------------------------------");
   }
 
   @Override
@@ -73,6 +74,7 @@ public class AffichageEvenements implements Evenements {
   public void nouvellePhase(Phase phase) {
     afficher("-------------------------------------------------");
     afficher("Nouvelle phase: " + phase.nom());
+    afficher("-------------------------------------------------");
   }
 
   @Override
