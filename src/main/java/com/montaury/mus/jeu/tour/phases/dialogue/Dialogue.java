@@ -99,20 +99,6 @@ import static com.montaury.mus.jeu.tour.phases.dialogue.choix.TypeChoix.TIRA;
         return new Deroulement(participants.retirer(joueurParlant), joueursDevantParler, prochainsChoixPossibles);
       }
 
-      public Deroulement tira(){
-        Equipe monEquipe = joueurParlant.getEquipe();
-        for(Joueur joueur : participants.dansLOrdre())
-        {
-          if(joueur.getEquipe() == monEquipe && joueur != joueurParlant)
-          {
-            joueursDevantParler = Collections.singletonList(joueur).iterator();
-            Deroulement nouveauDeroulement = this.retirerJoueurParlant();
-            return nouveauDeroulement;
-          }
-        }
-        return this.termine();
-      }
-
     }
 
     public static class Recapitulatif {

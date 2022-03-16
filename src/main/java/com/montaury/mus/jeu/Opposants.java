@@ -52,20 +52,8 @@ public class Opposants {
     return this.equipeZaku;
   }
 
-  public void setEquipeZaku(Equipe equipe) {
-    this.equipeZaku = equipe;
-  }
-
-  public void setEquipeEsku(Equipe equipe) {
-    this.equipeEsku = equipe;
-  }
-
   public Joueur joueurEsku() {
     return fileJoueur.getFirst();
-  }
-
-  public Joueur joueurZaku() {
-    return fileJoueur.getLast();
   }
 
   public boolean isEsku(Joueur joueur){
@@ -79,6 +67,8 @@ public class Opposants {
   public List<Joueur> dansLOrdre() {
     List<Joueur> maListe;
     if(fileJoueur.size() > 2){
+
+      //On remove car impossible de selectionner un joueur en particulier dans un Deque (uniquement le premier et le dernier)
       var pos1 = fileJoueur.remove();
       var pos2 = fileJoueur.remove();
       var pos3 = fileJoueur.remove();

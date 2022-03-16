@@ -10,6 +10,15 @@ class EquipeTest {
 
 
   @Test
+  void devrait_avoir_un_joueur() {
+
+    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi",1);
+
+    assertThat(equipeH.getNombreJoueurs()==1).isTrue();
+  }
+
+
+  @Test
   void devrait_avoir_deux_joueurs() {
 
     Equipe equipeH =  Equipe.humain("EquipeHumainOrdi",2);
@@ -17,12 +26,14 @@ class EquipeTest {
     assertThat(equipeH.getNombreJoueurs()==2).isTrue();
   }
 
+
   @Test
-  void devrait_avoir_un_joueur() {
+  void devrait_creer_1_joueur_humain_et_un_joueur_ordinateur()
+  {
+    Equipe equipeHumain =Equipe.humain("equipeTest",2);
 
-    Equipe equipeH =  Equipe.humain("EquipeHumainOrdi",1);
+    assertThat(equipeHumain.getJoueurUn().getNom()=="equipeTest" && equipeHumain.getJoueurDeux().getNom()=="Ordinateur").isTrue();
 
-    assertThat(equipeH.getNombreJoueurs()==1).isTrue();
   }
 
   @Test
@@ -34,13 +45,6 @@ class EquipeTest {
 
   }
 
-  @Test
-  void devrait_creer_1_joueur_humain_et_un_joueur_ordinateur()
-  {
-    Equipe equipeHumain =Equipe.humain("equipeTest",2);
 
-    assertThat(equipeHumain.getJoueurUn().getNom()=="equipeTest" && equipeHumain.getJoueurDeux().getNom()=="Ordinateur").isTrue();
-
-  }
 
 }

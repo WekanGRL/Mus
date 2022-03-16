@@ -48,6 +48,7 @@ public class Equipe {
         return main;
     }
 
+
     public static Equipe humain(String nom ,int nombreJoueurs) {
         Equipe resultat=null;
         if (nombreJoueurs==2)

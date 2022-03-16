@@ -17,7 +17,25 @@ import static org.mockito.Mockito.mock;
 class OpposantsTest {
 
 
+  @Test
+  void devrait_renvoyer_les_joueurs_dans_lordre2v2()
+  {
 
+    Joueur j1=Joueur.ordinateur();
+    Joueur j2=Joueur.ordinateur();
+    Joueur j3=Joueur.ordinateur();
+    Joueur j4=Joueur.ordinateur();
+
+    Equipe equipe1 = new Equipe(j1,j3);
+
+    Equipe equipe2 = new Equipe(j2,j4);
+
+    Opposants opposition = new Opposants(equipe1,equipe2);
+    opposition.dansLOrdre();
+
+    assertThat(opposition.dansLOrdre()).containsExactly(j1,j2,j3,j4);
+
+  }
 
 
 
