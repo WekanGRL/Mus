@@ -40,7 +40,7 @@ public class Equipe {
         return nbJoueursEquipe;
     }
 
-    public String nom() {
+    public String getNom() {
         return nom;
     }
 

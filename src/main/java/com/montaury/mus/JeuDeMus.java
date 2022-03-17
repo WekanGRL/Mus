@@ -56,7 +56,7 @@ public class JeuDeMus {
 
     partie = new Partie(new AffichageEvenements(equipeHumain.getJoueurUn()));
     resultat = partie.jouer(new Opposants(equipeHumain, equipeOrdi));
-    System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
+    System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().getNom());
   }
 }
 
